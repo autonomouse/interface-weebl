@@ -18,7 +18,7 @@ class WeeblProvider(RelationBase):
         for conv in self.conversations():
             self.set_remote(scope=conv.scope, data={
                 'weebl_api': weebl_api,
-                'weebl_url': weebl_url,
+                'weebl_url': self.get_local('private-address'),  # or should this be 'public-address'?
                 'weebl_username': weebl_username,
                 'weebl_apikey': weebl_apikey,
                 'environment_uuid': environment_uuid,
