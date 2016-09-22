@@ -21,4 +21,3 @@ class WeeblClient(RelationBase):
 
     def weebl_url(self):
         return self.get_remote('private-address')
-        # or should this be 'public-address'?

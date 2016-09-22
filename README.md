@@ -24,11 +24,20 @@ When implementing this interface as a requirer:
 
 `layer.yaml`
 ```yaml
-includes: ['interface:weebl']
+includes:
+- interface:weebl
 ```
 
 `reactive/thing.py`
 ```python
+  @when('weebl.available')
+  def get_url(weebl):
+      return weebl.weebl_url()
+
+  @when('weebl.available')
+  def get_name(weebl):
+      return weebl.weebl_username()
+
   @when('weebl.available')
   def get_apikey(weebl):
       return weebl.weebl_apikey()
@@ -46,31 +55,23 @@ The weebl charm provides this interface. If you wanted to provide this interface
 
 `layer.yaml`
 ```yaml
-includes: ['interface:weebl']
+includes:
+- interface:weebl
 ```
 
 `reactive/code.py`
 ```python
   @when('weebl.connected')
-  def configure_weebl_input(weebl):
-    weebl_api = 'v1'
-    weebl_url = 'http://www.example.com/'
-    weebl_username = 'username'
-    weebl_apikey = 'asdfghwert67tr5ghb78kojkjhvdfghwert67tr54'
-    weebl.provide_data(
-        weebl_api=weebl_api,
-        weebl_url=weebl_url,
-        weebl_username=weebl_username,
-        weebl_apikey=weebl_apikey)
-    # Write the weebl configuration
-    configure_weebl_or_something(weebl_api, weebl_url, weebl_username, weebl_apikey)
+  def send_weebl_info(weebl):
+      weebl.provide_weebl_credentials(
+          weebl_username=config['username'],
+          weebl_apikey=config['apikey'])
 ```
 
 ### Data
 
 Weebl send's the following information, per unit
 
- - weebl_api
  - weebl_url
  - weebl_username
  - weebl_apikey
