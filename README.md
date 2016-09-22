@@ -35,7 +35,7 @@ includes:
       return weebl.weebl_url()
 
   @when('weebl.available')
-  def get_name(weebl):
+  def get_username(weebl):
       return weebl.weebl_username()
 
   @when('weebl.available')
