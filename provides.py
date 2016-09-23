@@ -16,7 +16,7 @@ class WeeblProvider(RelationBase):
         self.remove_state('{relation_name}.connected')
 
     def provide_weebl_credentials(self, weebl_username, weebl_apikey):
-        self.set_remote(scope=self.scope, data={
+        self.set_remote(data={
             'weebl_username': weebl_username,
             'weebl_apikey': weebl_apikey,
         })
