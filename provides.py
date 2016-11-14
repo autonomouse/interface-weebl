@@ -20,3 +20,6 @@ class WeeblProvider(RelationBase):
             'weebl_username': weebl_username,
             'weebl_apikey': weebl_apikey,
         })
+
+    def weebl_url(self):
+        return self.get_local('private-address')
